@@ -1,5 +1,5 @@
 ### 파이썬 공부 ! (wiki 문법 참조 할 것)
-GitHub 사용법
+GitHub 사용법 (With pycharm)
 1. git.exe 검색해서 설치
 2. Github 로그인 후 repository 생성
 3. pycharm에서 일반 파일로 README.md 생성 후 내용 입력
