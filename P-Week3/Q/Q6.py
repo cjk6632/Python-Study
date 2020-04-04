@@ -3,7 +3,7 @@
 
 
 user_input = input("저장할 내용을 입력 : ")
-f = open('test.txt', 'a') # with open('test.txt', 'a') as f: 와 같음
+f = open('test.txt', 'a', encoding='utf8') # with open('test.txt', 'a', encoding='utf8') as f: 와 같음
 f.write(user_input)
 f.write("\n")
 f.close()
