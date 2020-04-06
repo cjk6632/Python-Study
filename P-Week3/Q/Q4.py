@@ -16,9 +16,11 @@ def solution(string):
         return string[d-1:d+1]
     else:
         return string[len(string) // 2]
+
 # def solution(string):
 #     return string[(len(string) - 1) // 2:len(string) // 2 + 1]
 #             #abcde      #5 - 1 (4)     //  #2: 4 // 2  + 1 (2:3)
+
 print('단어 입력 (1 ~ 100글자 이내로 입력 : ')
 string = input()
 print(solution(string))
