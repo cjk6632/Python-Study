@@ -4,8 +4,8 @@
 
 
 
-# 1. 사용자 입력값을 받아서 네이버 검색폼에 넣기
-# 2. 카테고리 중 '뉴스' 페이지의 기사들에서 제목과 링크 저장
+# 1. 사용자 입력값을 받아서 네이버 '뉴스' 검색폼에 입력
+# 2. 해당 화면의 검색어에 따른 기사들에서 제목과 링크 저장
 # 3. 엑셀에 제목과 링크 정리
 
 
@@ -17,7 +17,7 @@
 # <ul class="type01">
 # - 해당 페이지의 전체 뉴스들
 
-# 2. 아래부터는 반복문 사용 (숫자 1~10까지 늘려가면서 뉴스기사에 접근) -> li 갯수만큼 반복문 돌리기 bs4 기능 findAll)
+# 2. 아래부터는 반복문 사용 (숫자 1~10까지 늘려가면서 뉴스기사에 접근) -> li 갯수만큼 반복문 돌리기 bs4 기능중 findAll)
 #   <li id="sp_nws숫자>...</li>
 #   - 각 기사 분류
 #
@@ -28,9 +28,10 @@
 # 3. 접근한 기사의 <dt>내의 href와 title 가져오기
 
 
-# request
 import requests
 from bs4 import BeautifulSoup
+
+print('검색할 기사를 입력 : ')
 
 search = str(input()) # 사용자 입력 구문에 들어갈 search 변수
 result = requests.get('https://search.naver.com/search.naver?where=news&query='+search+'&sm=tab_srt&sort=1&photo=0&field=0&reporter_article=&pd=0&ds=&de=&docid=&nso=so%3Add%2Cp%3Aall%2Ca%3Aall&mynews=0&refresh_start=0&related=0')
@@ -43,13 +44,14 @@ soup2 = soup.find('ul', class_='type01')
 # 해당 페이지 전체 뉴스들 기준점
 
 soup3 = soup2.findAll('li')
+# soup2 범위 중 li태그(개별 기사)를 가진 부분을 저장(반복 목적으로 사용 예정)
 
 for i in soup3:
-    print(i.dl.dt.a.text)
-    #href
-
-# <li id="sp_nws숫자>...</li>
-
+    Title = i.dl.dt.a.attrs['title']
+    Url = i.dl.dt.a.attrs['href']
+    print(Title,Url)
+        #soup3 즉, li 태그 수 만큼 반복을 하게하며, 그 안에 필요한것이 기사의 제목과 URL
+        # .attrs는 해당 태그의 특정 속성값을 추출해 주는 기능
 
 
 
