@@ -8,7 +8,7 @@ numberList = [1,2,3,4,5]
 
 # numberList에 있는 값을 하나씩 뺴와서 i에 담는다
 # 즉 numberList에 있는 배열 크기 만큼 반복한다
-a = 0
+
 for i  in numberList:
     a = a + i
     print(a)
