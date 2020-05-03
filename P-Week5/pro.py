@@ -29,7 +29,9 @@
 
 
 import requests
+import os
 from bs4 import BeautifulSoup
+
 
 print('검색할 기사를 입력 : ')
 
@@ -52,6 +54,8 @@ for i in soup3:
     print(Title,Url)
         #soup3 즉, li 태그 수 만큼 반복을 하게하며, 그 안에 필요한것이 기사의 제목과 URL
         # .attrs는 해당 태그의 특정 속성값을 추출해 주는 기능
+
+os.system("pause")
 
 
 
