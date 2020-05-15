@@ -62,6 +62,7 @@ if len(soup2) == 0: # soup2를 출력했을 때, 비어있는 Dictionary([])가 
     eachNews = NewsBasePoint2.findAll('tr') # 2차 기준점 뉴스기사들(각각 tr로 자리잡혀있음)
     count = 0 # 딕셔너리 반복문에 쓰일 카운트
     NewsDict = {} # 빈 딕셔너리를 우선 생성
+    RepeatRemoval = [] # 딕셔너리 값들을 모아둘 빈 리스트
 
     for i in eachNews: # 각 뉴스기사들을 추출해주기 위해 반복문 구성
         Title = i.td.a.text  # 제목
@@ -73,8 +74,12 @@ if len(soup2) == 0: # soup2를 출력했을 때, 비어있는 Dictionary([])가 
             'Url' : Url,
             'Provider' : Provider
         }
-        print(NewsDict[count])
-        count + 1
+        RepeatRemoval.append(NewsDict[count]) # 중복 제거를 위한 빈 리스트에 값을 반복문 내에서 순차적으로 append
+        count + 1 # count를 1씩 증가시키며 반복문 수행
+
+
+    NewsList = ({RepeatRemoval['Title']:RepeatRemoval for RepeatRemoval in RepeatRemoval}.values())
+    print(NewsList)
 
 
 
@@ -103,6 +108,7 @@ else: # soup2 출력 시, 종목 문자열 일치하는 부분이 있어서 한�
             eachNews = NewsBasePoint2.findAll('tr') # 기준점 내에서 각 기사들의 시작점을 나타내는 tr들을 모두 수집
             count = 0  # 딕셔너리 반복문에 쓰일 카운트
             NewsDict = {} # 빈 딕셔너리를 우선 생성
+            RepeatRemoval = []  # 딕셔너리 값들을 모아둘 빈 리스트
 
             for i in eachNews:
                 Title = i.td.a.text  # 제목
@@ -114,8 +120,10 @@ else: # soup2 출력 시, 종목 문자열 일치하는 부분이 있어서 한�
                     'Url': Url,
                     'Provider': Provider
                 }
-                print(NewsDict[count])
+                RepeatRemoval.append(NewsDict[count]) # 중복 제거를 위한 빈 리스트에 값을 반복문 내에서 순차적으로 append
                 count + 1
+            NewsList = ({RepeatRemoval['Title']: RepeatRemoval for RepeatRemoval in RepeatRemoval}.values())
+            print(NewsList)
 
 
 
